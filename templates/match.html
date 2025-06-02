@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buddy finden – BuddyApp</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Deine Matches</h1>
+
+        <form method="GET">
+            <input type="text" name="city" placeholder="Stadt filtern" value="{{ request.args.get('city', '') }}">
+            <select name="role">
+                <option value="">Rolle filtern</option>
+                <option value="hilfe">Ich suche Hilfe</option>
+                <option value="buddy">Ich möchte helfen</option>
+            </select>
+            <input type="text" name="interest" placeholder="Interesse filtern" value="{{ request.args.get('interest', '') }}">
+            <button type="submit">Filtern</button>
+        </form>
+
+        {% for user in users %}
+            <div style="border:1px solid #ccc; margin:10px; padding:10px; border-radius:5px;">
+                <strong>{{ user[0] }}</strong> ({{ user[1] }})<br>
+                Rolle: {{ user[2] }}<br>
+                Interessen: {{ user[3] }}<br>
+                {% if user[2] == 'hilfe' %}
+                    Braucht Hilfe bei: {{ user[4] }}
+                {% elif user[2] == 'buddy' %}
+                    Bietet Hilfe bei: {{ user[5] }}
+                {% endif %}<br>
+                Stadt: {{ user[6] }}
+            </div>
+        {% endfor %}
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="/profil"><button>Mein Profil</button></a>
+            <a href="/logout"><button>Logout</button></a>
+            {% if session['username'] == 'admin' %}
+                <a href="/admin"><button>Adminbereich</button></a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

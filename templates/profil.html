@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mein Profil – BuddyApp</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Mein Profil</h1>
+
+        <p><strong>Name:</strong> {{ user[0] }}</p>
+        <p><strong>Benutzername:</strong> {{ user[1] }}</p>
+        <p><strong>Geschlecht:</strong> {{ user[2] }}</p>
+        <p><strong>Rolle:</strong> {{ user[3] }}</p>
+        <p><strong>Interessen:</strong> {{ user[4] }}</p>
+        {% if user[3] == 'hilfe' %}
+            <p><strong>Braucht Hilfe bei:</strong> {{ user[5] }}</p>
+        {% elif user[3] == 'buddy' %}
+            <p><strong>Bietet Hilfe bei:</strong> {{ user[6] }}</p>
+        {% endif %}
+        <p><strong>Stadt:</strong> {{ user[7] }}</p>
+
+        <div style="text-align:center;">
+            <a href="/match"><button>Zurück zu den Matches</button></a>
+            <a href="/logout"><button>Logout</button></a>
+        </div>
+    </div>
+</body>
+</html>
