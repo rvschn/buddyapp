@@ -151,7 +151,7 @@ def delete_user(user_id):
         return render_template('confirm_delete.html', username=result[0])
     else:
         return "Benutzer nicht gefunden."
+init_db()
 
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True)
