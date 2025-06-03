@@ -4,6 +4,7 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = 'buddyapp_secret'
 
+# Datenbank initialisieren
 def init_db():
     conn = sqlite3.connect('buddyapp.db')
     c = conn.cursor()
@@ -24,12 +25,14 @@ def init_db():
     conn.commit()
     conn.close()
 
+# Startseite
 @app.route('/')
 def index():
     if 'username' in session:
         return redirect('/match')
     return render_template('index.html')
 
+# Registrierung
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -55,6 +58,7 @@ def register():
         return redirect('/login')
     return render_template('register.html')
 
+# Login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -71,16 +75,18 @@ def login():
         return "Login fehlgeschlagen."
     return render_template('login.html')
 
+# Logout
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     return redirect('/')
 
+# Partner-Matching
 @app.route('/match')
 def match():
     if 'username' not in session:
         return redirect('/login')
-    
+
     city_filter = request.args.get('city', '').strip()
     role_filter = request.args.get('role', '').strip()
     interest_filter = request.args.get('interest', '').strip()
@@ -103,6 +109,7 @@ def match():
     conn.close()
     return render_template('match.html', users=users)
 
+# Profil anzeigen
 @app.route('/profil')
 def profil():
     if 'username' not in session:
@@ -114,6 +121,7 @@ def profil():
     conn.close()
     return render_template('profil.html', user=user)
 
+# Adminbereich
 @app.route('/admin')
 def admin():
     if 'username' not in session or session['username'] != 'admin':
@@ -125,11 +133,12 @@ def admin():
     conn.close()
     return render_template('admin.html', users=users)
 
+# Benutzer löschen
 @app.route('/admin/delete/<int:user_id>', methods=['GET', 'POST'])
 def delete_user(user_id):
     if 'username' not in session or session['username'] != 'admin':
         return redirect('/login')
-    
+
     conn = sqlite3.connect('buddyapp.db')
     c = conn.cursor()
 
@@ -151,6 +160,18 @@ def delete_user(user_id):
         return render_template('confirm_delete.html', username=result[0])
     else:
         return "Benutzer nicht gefunden."
+
+# Zusatz: Check-Seite zum Debuggen
+@app.route('/check')
+def check_users():
+    conn = sqlite3.connect('buddyapp.db')
+    c = conn.cursor()
+    c.execute('SELECT id, username FROM users')
+    users = c.fetchall()
+    conn.close()
+    return "<h2>Benutzer in der Datenbank:</h2>" + "<br>".join([f"{u[0]}: {u[1]}" for u in users])
+
+# Datenbank initialisieren und App starten
 init_db()
 
 if __name__ == '__main__':
