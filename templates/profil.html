@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mein Profil – BuddyApp</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Profil</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Mein Profil</h1>
-
-        <p><strong>Name:</strong> {{ user[0] }}</p>
-        <p><strong>Benutzername:</strong> {{ user[1] }}</p>
-        <p><strong>Geschlecht:</strong> {{ user[2] }}</p>
-        <p><strong>Rolle:</strong> {{ user[3] }}</p>
-        <p><strong>Interessen:</strong> {{ user[4] }}</p>
-        {% if user[3] == 'hilfe' %}
-            <p><strong>Braucht Hilfe bei:</strong> {{ user[5] }}</p>
-        {% elif user[3] == 'buddy' %}
-            <p><strong>Bietet Hilfe bei:</strong> {{ user[6] }}</p>
-        {% endif %}
-        <p><strong>Stadt:</strong> {{ user[7] }}</p>
-
-        <div style="text-align:center;">
-            <a href="/match"><button>Zurück zu den Matches</button></a>
-            <a href="/logout"><button>Logout</button></a>
-        </div>
-    </div>
+    <h1>Mein Profil</h1>
+    <p>Name: {{ user[0] }}</p>
+    <p>Benutzername: {{ user[1] }}</p>
+    <p>Geschlecht: {{ user[2] }}</p>
+    <p>Rolle: {{ user[3] }}</p>
+    <p>Interesse: {{ user[4] }}</p>
+    {% if user[3] == "hilfe" %}
+        <p>Ich brauche Hilfe bei: {{ user[5] }}</p>
+    {% elif user[3] == "buddy" %}
+        <p>Ich biete Hilfe an bei: {{ user[6] }}</p>
+    {% endif %}
+    <p>Stadt: {{ user[7] }}</p>
+    <a href="/match">Zurück</a> | <a href="/logout">Logout</a>
 </body>
 </html>

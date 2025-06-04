@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Löschen bestätigen – BuddyApp</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Löschen bestätigen</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Benutzer löschen</h1>
-        <p>Möchtest du den Benutzer <strong>{{ username }}</strong> wirklich löschen?</p>
-        <form method="POST">
-            <input type="password" name="code" placeholder="Sicherheitscode (z. B. 1234)" required>
-            <button type="submit">Ja, löschen</button>
-        </form>
-        <div style="text-align:center; margin-top:20px;">
-            <a href="/admin"><button>Abbrechen</button></a>
-        </div>
-    </div>
+    <h2>Benutzer "{{ username }}" wirklich löschen?</h2>
+    <form method="POST">
+        Sicherheitscode eingeben: <input type="text" name="code">
+        <button type="submit">Löschen</button>
+    </form>
+    <a href="/admin">Abbrechen</a>
 </body>
 </html>

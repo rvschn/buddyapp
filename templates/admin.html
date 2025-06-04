@@ -1,31 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Adminbereich – BuddyApp</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Adminbereich</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Adminbereich</h1>
-
-        <h2>Registrierte Benutzer</h2>
-
+    <h1>Admin – Benutzerübersicht</h1>
+    <ul>
         {% for user in users %}
-            <div style="border:1px solid #ccc; margin:10px; padding:10px; border-radius:5px;">
-                <strong>{{ user[1] }}</strong> ({{ user[2] }})<br>
-                Geschlecht: {{ user[3] }}<br>
-                Rolle: {{ user[4] }}<br>
-                Interessen: {{ user[5] }}<br>
-                Stadt: {{ user[6] }}<br>
-                <form method="POST" action="/admin/delete/{{ user[0] }}">
-                    <button type="submit">❌ Löschen</button>
-                </form>
-            </div>
+            <li>
+                {{ user[0] }}: {{ user[1] }} ({{ user[2] }}) – {{ user[3] }}, {{ user[4] }}, {{ user[5] }} <br>
+                <a href="/admin/delete/{{ user[0] }}">Löschen</a>
+            </li>
         {% endfor %}
-
-        <div style="text-align:center;">
-            <a href="/match"><button>Zurück zu den Matches</button></a>
-        </div>
-    </div>
+    </ul>
+    <a href="/match">Zurück</a> | <a href="/logout">Logout</a>
 </body>
 </html>

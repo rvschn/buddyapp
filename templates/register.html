@@ -1,51 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registrierung – BuddyApp</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Registrierung</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Registrierung</h1>
-        <form method="POST">
-            <input type="text" name="name" placeholder="Voller Name" required>
-            <input type="text" name="username" placeholder="Benutzername" required>
-            <input type="password" name="password" placeholder="Passwort" required>
-
-            <label>Geschlecht:</label>
-            <select name="gender" required>
-                <option value="männlich">Männlich</option>
-                <option value="weiblich">Weiblich</option>
-                <option value="divers">Divers</option>
-            </select>
-
-            <label>Ich bin:</label>
-            <select name="role" onchange="toggleFields(this.value)" required>
-                <option value="">Bitte wählen</option>
-                <option value="hilfe">Ich suche Hilfe</option>
-                <option value="buddy">Ich möchte helfen</option>
-            </select>
-
-            <div id="needHelpField" style="display:none;">
-                <input type="text" name="need_help" placeholder="Wobei brauchst du Hilfe?">
-            </div>
-
-            <div id="offerHelpField" style="display:none;">
-                <input type="text" name="offer_help" placeholder="Wobei kannst du helfen?">
-            </div>
-
-            <input type="text" name="interest" placeholder="Interessen (z.B. Spazieren, Spielen)" required>
-            <input type="text" name="city" placeholder="Stadt" required>
-            <button type="submit">Registrieren</button>
-        </form>
-        <p>Schon registriert? <a href="/login">Hier einloggen</a></p>
-    </div>
-
+    <h1>Registrieren</h1>
+    <form method="POST">
+        Name: <input type="text" name="name" required><br>
+        Benutzername: <input type="text" name="username" required><br>
+        Passwort: <input type="password" name="password" required><br>
+        Geschlecht:
+        <select name="gender">
+            <option value="männlich">männlich</option>
+            <option value="weiblich">weiblich</option>
+            <option value="divers">divers</option>
+        </select><br>
+        Ich bin:
+        <select name="role" id="role" onchange="toggleHelpFields()">
+            <option value="hilfe">Person mit Unterstützungsbedarf</option>
+            <option value="buddy">Buddy (ich helfe gern)</option>
+        </select><br>
+        Interessen: <input type="text" name="interest"><br>
+        <div id="needHelpField">
+            Hilfe, die ich brauche: <input type="text" name="need_help"><br>
+        </div>
+        <div id="offerHelpField" style="display: none;">
+            Hilfe, die ich anbiete: <input type="text" name="offer_help"><br>
+        </div>
+        Stadt: <input type="text" name="city"><br>
+        <button type="submit">Registrieren</button>
+    </form>
     <script>
-        function toggleFields(role) {
+        function toggleHelpFields() {
+            const role = document.getElementById('role').value;
             document.getElementById('needHelpField').style.display = role === 'hilfe' ? 'block' : 'none';
             document.getElementById('offerHelpField').style.display = role === 'buddy' ? 'block' : 'none';
         }
+        toggleHelpFields();
     </script>
 </body>
 </html>
