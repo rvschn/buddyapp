@@ -5,20 +5,21 @@
     <title>Profil</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
-    <h1>Mein Profil</h1>
-    <p>Name: {{ user[0] }}</p>
-    <p>Benutzername: {{ user[1] }}</p>
-    <p>Geschlecht: {{ user[2] }}</p>
-    <p>Rolle: {{ user[3] }}</p>
-    <p>Interesse: {{ user[4] }}</p>
-    {% if user[3] == "hilfe" %}
-        <p>Ich brauche Hilfe bei: {{ user[5] }}</p>
-    {% elif user[3] == "buddy" %}
-        <p>Ich biete Hilfe an bei: {{ user[6] }}</p>
-    {% endif %}
-    <p>Stadt: {{ user[7] }}</p>
-    <a href="/match">Zurück</a> | <a href="/logout">Logout</a>
+    <div class="container">
+        <h1>Mein Profil</h1>
+        <p>Name: {{ user[0] }}</p>
+        <p>Benutzername: {{ user[1] }}</p>
+        <p>Geschlecht: {{ user[2] }}</p>
+        <p>Rolle: {{ user[3] }}</p>
+        <p>Interesse: {{ user[4] }}</p>
+        {% if user[3] == "hilfe" %}
+            <p>Ich brauche Hilfe bei: {{ user[5] }}</p>
+        {% elif user[3] == "buddy" %}
+            <p>Ich biete Hilfe an bei: {{ user[6] }}</p>
+        {% endif %}
+        <p>Stadt: {{ user[7] }}</p>
+        <a href="/match">Zurück</a> | <a href="/logout">Logout</a>
+    </div>
 </body>
 </html>

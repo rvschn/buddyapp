@@ -5,41 +5,42 @@
     <title>Registrierung</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
-    <h1>Registrieren</h1>
-    <form method="POST">
-        Name: <input type="text" name="name" required><br>
-        Benutzername: <input type="text" name="username" required><br>
-        Passwort: <input type="password" name="password" required><br>
-        Geschlecht:
-        <select name="gender">
-		    <option value="weiblich">weiblich</option>
-            <option value="männlich">männlich</option>
-            <option value="divers">divers</option>
-        </select><br>
-        Ich bin:
-        <select name="role" id="role" onchange="toggleHelpFields()">
-            <option value="hilfe">Person mit Unterstützungsbedarf</option>
-            <option value="buddy">Buddy (ich helfe gern)</option>
-        </select><br>
-        Interessen: <input type="text" name="interest"><br>
-        <div id="needHelpField">
-            Hilfe, die ich brauche: <input type="text" name="need_help"><br>
-        </div>
-        <div id="offerHelpField" style="display: none;">
-            Hilfe, die ich anbiete: <input type="text" name="offer_help"><br>
-        </div>
-        Stadt: <input type="text" name="city"><br>
-        <button type="submit">Registrieren</button>
-    </form>
-    <script>
-        function toggleHelpFields() {
-            const role = document.getElementById('role').value;
-            document.getElementById('needHelpField').style.display = role === 'hilfe' ? 'block' : 'none';
-            document.getElementById('offerHelpField').style.display = role === 'buddy' ? 'block' : 'none';
-        }
-        toggleHelpFields();
-    </script>
+    <div class="container">
+        <h1>Registrieren</h1>
+        <form method="POST">
+            Name: <input type="text" name="name" required><br>
+            Benutzername: <input type="text" name="username" required><br>
+            Passwort: <input type="password" name="password" required><br>
+            Geschlecht:
+            <select name="gender">
+                <option value="weiblich">weiblich</option>
+                <option value="männlich">männlich</option>
+                <option value="divers">divers</option>
+            </select><br>
+            Ich bin:
+            <select name="role" id="role" onchange="toggleHelpFields()">
+                <option value="hilfe">Person mit Unterstützungsbedarf</option>
+                <option value="buddy">Buddy (ich helfe gern)</option>
+            </select><br>
+            Interessen: <input type="text" name="interest"><br>
+            <div id="needHelpField">
+                Hilfe, die ich brauche: <input type="text" name="need_help"><br>
+            </div>
+            <div id="offerHelpField" style="display: none;">
+                Hilfe, die ich anbiete: <input type="text" name="offer_help"><br>
+            </div>
+            Stadt: <input type="text" name="city"><br>
+            <button type="submit">Registrieren</button>
+        </form>
+        <script>
+            function toggleHelpFields() {
+                const role = document.getElementById('role').value;
+                document.getElementById('needHelpField').style.display = role === 'hilfe' ? 'block' : 'none';
+                document.getElementById('offerHelpField').style.display = role === 'buddy' ? 'block' : 'none';
+            }
+            toggleHelpFields();
+        </script>
+    </div>
 </body>
 </html>

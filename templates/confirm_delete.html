@@ -5,13 +5,14 @@
     <title>Löschen bestätigen</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
-    <h2>Benutzer "{{ username }}" wirklich löschen?</h2>
-    <form method="POST">
-        Sicherheitscode eingeben: <input type="text" name="code">
-        <button type="submit">Löschen</button>
-    </form>
-    <a href="/admin">Abbrechen</a>
+    <div class="container">
+        <h2>Benutzer "{{ username }}" wirklich löschen?</h2>
+        <form method="POST">
+            Sicherheitscode eingeben: <input type="text" name="code">
+            <button type="submit">Löschen</button>
+        </form>
+        <a href="/admin">Abbrechen</a>
+    </div>
 </body>
 </html>

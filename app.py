@@ -5,11 +5,9 @@ import os
 app = Flask(__name__)
 app.secret_key = 'buddyapp_secret'
 
-# Datenbankverbindung mit Render-URL
 def get_db_connection():
     return psycopg2.connect(os.environ['DATABASE_URL'], sslmode='require')
 
-# Tabelle erstellen (einmal beim Start)
 def init_db():
     conn = get_db_connection()
     c = conn.cursor()
@@ -152,7 +150,6 @@ def delete_user(user_id):
     else:
         return "Benutzer nicht gefunden."
 
-# Tabelle beim Start prüfen
 init_db()
 
 if __name__ == '__main__':

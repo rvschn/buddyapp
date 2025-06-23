@@ -5,34 +5,35 @@
     <title>Matches</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
-    <h1>Deine Buddy-Vorschläge</h1>
-    <form method="get">
-        Stadt filtern: <input type="text" name="city">
-        Rolle: 
-        <select name="role">
-            <option value="">Alle</option>
-            <option value="hilfe">Hilfesuchend</option>
-            <option value="buddy">Buddy</option>
-        </select>
-        Interesse: <input type="text" name="interest">
-        <button type="submit">Filtern</button>
-    </form>
-    <ul>
-        {% for user in users %}
-            <li>
-                {{ user[0] }} ({{ user[1] }}) – {{ user[2] }} <br>
-                Interesse: {{ user[3] }}<br>
-                {% if user[2] == "hilfe" %}
-                    Braucht Hilfe bei: {{ user[4] }}
-                {% elif user[2] == "buddy" %}
-                    Bietet Hilfe an bei: {{ user[5] }}
-                {% endif %}
-                <br>Stadt: {{ user[6] }}
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/profil">Mein Profil</a> | <a href="/logout">Logout</a>
+    <div class="container">
+        <h1>Deine Buddy-Vorschläge</h1>
+        <form method="get">
+            Stadt filtern: <input type="text" name="city">
+            Rolle: 
+            <select name="role">
+                <option value="">Alle</option>
+                <option value="hilfe">Hilfesuchend</option>
+                <option value="buddy">Buddy</option>
+            </select>
+            Interesse: <input type="text" name="interest">
+            <button type="submit">Filtern</button>
+        </form>
+        <ul>
+            {% for user in users %}
+                <li>
+                    {{ user[0] }} ({{ user[1] }}) – {{ user[2] }} <br>
+                    Interesse: {{ user[3] }}<br>
+                    {% if user[2] == "hilfe" %}
+                        Braucht Hilfe bei: {{ user[4] }}
+                    {% elif user[2] == "buddy" %}
+                        Bietet Hilfe an bei: {{ user[5] }}
+                    {% endif %}
+                    <br>Stadt: {{ user[6] }}
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/profil">Mein Profil</a> | <a href="/logout">Logout</a>
+    </div>
 </body>
 </html>
